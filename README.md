@@ -19,7 +19,6 @@ This script automates the process of updating agent utilization settings in Gene
 - `pandas` library
 - `requests` library
 - `Flask` library
-- `openpyxl` library
 
 ## Installation
 
@@ -33,7 +32,7 @@ This script automates the process of updating agent utilization settings in Gene
    ```
 3. **Install the required Python packages:**
    ```bash
-   pip install -r requirements.txt
+   pip install pandas requests Flask
    ```
 4. **Create a `config.json` file in the project directory with the following structure:**
    ```json
@@ -56,7 +55,7 @@ This script automates the process of updating agent utilization settings in Gene
    ```
 4. **Upload the Excel file using the web interface and preview the data.**
 5. **Click "Process" to update the agent utilization settings.**
-6. **Use the "Reset" button to clear the form and start over if needed.**
+6. **Use the "Reset" button to clear the form and start over if needed.
 
 ## Excel File Format
 
@@ -80,10 +79,8 @@ The Excel file (`agent_utilization.xlsx`) should have the following columns:
 
 | Email Address                 | Email Maximum Capacity | Email Interruptable Media Types | Chat Maximum Capacity | Chat Interruptable Media Types | Message Maximum Capacity | Message Interruptable Media Types | Callback Maximum Capacity | Callback Interruptable Media Types | Call Maximum Capacity | Call Interruptable Media Types | Workitem Maximum Capacity | Workitem Interruptable Media Types |
 |-------------------------------|------------------------|---------------------------------|-----------------------|-------------------------------|--------------------------|----------------------------------|---------------------------|-----------------------------------|------------------------|-------------------------------|---------------------------|----------------------------------|
-| charles@sample.com    | 3                      | call,chat                       | 3                     | callback,message              | 3                        | call,chat                         | 3                         | call,chat                          | 3                      | chat                          | 3                         | call,chat                         |
-| nicholash@sample.com  | 3                      | call,chat                       | 3                     | callback,message              | 3                        | callback                          | 3                         | message                           | 3                      | callback,message              | 3                         | callback,message                   |
-### Sample File Download
-[Link](https://github.com/hf-ck/Agent-Utilization-Update-Script/blob/main/static/example_agent_utilization.xlsx)
+| charles.kim@hellofresh.com    | 3                      | call,chat                       | 3                     | callback,message              | 3                        | call,chat                         | 3                         | call,chat                          | 3                      | chat                          | 3                         | call,chat                         |
+| nicholas.koch@hellofresh.com  | 3                      | call,chat                       | 3                     | callback,message              | 3                        | callback                          | 3                         | message                           | 3                      | callback,message              | 3                         | callback,message                   |
 
 ## Web Interface
 
@@ -100,11 +97,6 @@ The Excel file (`agent_utilization.xlsx`) should have the following columns:
 3. **Results Page (`results.html`):**
     - Display the results of the update process.
     - Options to go back to the main page or reset the form.
-### Screenshots
-![main page](https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility/assets/146773567/779e17a9-e621-4065-8030-2d9209353fee)
-![Preview](https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility/assets/146773567/3510782f-a01f-4d6e-8f32-3a54d44792ca)
-
-![results](https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility/assets/146773567/9af56847-cc87-4e01-bd97-6d8b2ed7d394)
 
 ### How to Use
 
