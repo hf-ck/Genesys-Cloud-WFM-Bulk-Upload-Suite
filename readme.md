@@ -132,12 +132,27 @@ The Excel file (`agent_utilization.xlsx`) should have the following columns:
 - **Improved Data Handling**:
   - Fixed issues with extra characters in the preview and results.
   
-### Code Version Differences
 
-**Version 1**: Initial Code
+## Update Logs
 
-**Version 2**: Updated Code with Web Interface
+### Version 1.1.0
+
+- Updated the framework from Flask to a new framework.
+- Enhanced navigation and layout for better user experience.
+- Added support for the `waitress` server for Windows environments.
+- Improved the extensibility to easily integrate additional WFM tools.
+
+### Version 1.0.0
+
+- Initial release with batch agent utilization updates.
+- Basic navigation and layout using Flask.
+- Simple file upload and processing for agent utilization settings.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request for review.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
