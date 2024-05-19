@@ -152,8 +152,6 @@ Genesys-Cloud-WFM-Bulk-Upload-Suite/
 ├── requirements.txt
 ├── run.py
 
-markdown
-Copy code
 
 ## Update Logs
 
