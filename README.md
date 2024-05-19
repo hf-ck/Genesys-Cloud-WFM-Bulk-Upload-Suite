@@ -58,10 +58,6 @@ This script automates the process of updating agent utilization settings in Gene
 5. **Click "Process" to update the agent utilization settings.**
 6. **Use the "Reset" button to clear the form and start over if needed.**
 
-## Screenshots
-![image](https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility/assets/146773567/0de787d9-b150-4cd8-8509-fa3a0fc83d46)
-![image](https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility/assets/146773567/0f04e872-2a53-4a33-af6a-eebdd39de0ad)
-![image](https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility/assets/146773567/3068844f-a617-4f6d-9a1b-89630d556275)
 ## Excel File Format
 
 The Excel file (`agent_utilization.xlsx`) should have the following columns:
@@ -104,6 +100,11 @@ The Excel file (`agent_utilization.xlsx`) should have the following columns:
 3. **Results Page (`results.html`):**
     - Display the results of the update process.
     - Options to go back to the main page or reset the form.
+### Screenshots
+![main page](https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility/assets/146773567/779e17a9-e621-4065-8030-2d9209353fee)
+![Preview](https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility/assets/146773567/3510782f-a01f-4d6e-8f32-3a54d44792ca)
+
+![results](https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility/assets/146773567/9af56847-cc87-4e01-bd97-6d8b2ed7d394)
 
 ### How to Use
 
