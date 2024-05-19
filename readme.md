@@ -130,28 +130,6 @@ To add a new utility:
     }
     ```
 
-## Project Structure
-
-Genesys-Cloud-WFM-Bulk-Upload-Suite/
-├── app/
-│ ├── init.py
-│ ├── routes/
-│ │ ├── init.py
-│ │ ├── utilization.py
-│ │ ├── new_utility.py # Example new utility
-│ ├── templates/
-│ │ ├── base.html
-│ │ ├── index.html
-│ │ ├── preview.html
-│ │ ├── utilization.html
-│ │ ├── new_utility.html # Example new utility template
-│ ├── static/
-├── uploads/
-├── .env
-├── config.py
-├── requirements.txt
-├── run.py
-
 
 ## Update Logs
 
