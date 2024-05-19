@@ -82,6 +82,8 @@ The Excel file (`agent_utilization.xlsx`) should have the following columns:
 |-------------------------------|------------------------|---------------------------------|-----------------------|-------------------------------|--------------------------|----------------------------------|---------------------------|-----------------------------------|------------------------|-------------------------------|---------------------------|----------------------------------|
 | charles.kim@hellofresh.com    | 3                      | call,chat                       | 3                     | callback,message              | 3                        | call,chat                         | 3                         | call,chat                          | 3                      | chat                          | 3                         | call,chat                         |
 | nicholas.koch@hellofresh.com  | 3                      | call,chat                       | 3                     | callback,message              | 3                        | callback                          | 3                         | message                           | 3                      | callback,message              | 3                         | callback,message                   |
+### Sample File Download
+[Link](https://github.com/hf-ck/Agent-Utilization-Update-Script/blob/main/static/example_agent_utilization.xlsx)
 
 ## Web Interface
 
