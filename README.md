@@ -19,6 +19,7 @@ This script automates the process of updating agent utilization settings in Gene
 - `pandas` library
 - `requests` library
 - `Flask` library
+- `openpyxl` library
 
 ## Installation
 
@@ -32,7 +33,7 @@ This script automates the process of updating agent utilization settings in Gene
    ```
 3. **Install the required Python packages:**
    ```bash
-   pip install pandas requests Flask
+   pip install -r requirements.txt
    ```
 4. **Create a `config.json` file in the project directory with the following structure:**
    ```json
@@ -55,7 +56,7 @@ This script automates the process of updating agent utilization settings in Gene
    ```
 4. **Upload the Excel file using the web interface and preview the data.**
 5. **Click "Process" to update the agent utilization settings.**
-6. **Use the "Reset" button to clear the form and start over if needed.
+6. **Use the "Reset" button to clear the form and start over if needed.**
 
 ## Excel File Format
 
