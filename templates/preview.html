@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Preview</h1>
+        <h2>{{ file }}</h2>
+        <input type="hidden" id="file-name" value="{{ file }}">
+        <div class="table-responsive">
+            {{ table_html | safe }}
+        </div>
+        <button id="process-btn" class="btn btn-primary mt-3">Process</button>
+    </div>
+</body>
+</html>

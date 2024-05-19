@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Utilization Update</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#upload-form').submit(function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '/preview',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#preview-container').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            });
+
+            $(document).on('click', '#process-btn', function() {
+                var formData = {
+                    file: $('#file-name').val()
+                };
+                $.ajax({
+                    url: '/process',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        $('#preview-container').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            });
+
+            $(document).on('click', '#reset-btn', function() {
+                $.ajax({
+                    url: '/reset',
+                    type: 'POST',
+                    success: function() {
+                        window.location.href = '/';
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">User Utilization Update</h1>
+        <form id="upload-form" class="mt-4">
+            <div class="form-group">
+                <label for="file">Select an Excel file:</label>
+                <input type="file" class="form-control-file" id="file" name="file" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Preview</button>
+        </form>
+        <div id="preview-container" class="mt-4"></div>
+    </div>
+</body>
+</html>

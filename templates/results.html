@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Results</h1>
+        <ul class="list-group">
+            {% for result in results %}
+                <li class="list-group-item">{{ result }}</li>
+            {% endfor %}
+        </ul>
+        <div class="mt-4">
+            <button id="back-btn" class="btn btn-primary">Back</button>
+            <button id="reset-btn" class="btn btn-secondary">Reset</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#back-btn').click(function() {
+                window.location.href = '/';
+            });
+
+            $('#reset-btn').click(function() {
+                $.ajax({
+                    url: '/reset',
+                    type: 'POST',
+                    success: function() {
+                        window.location.href = '/';
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
