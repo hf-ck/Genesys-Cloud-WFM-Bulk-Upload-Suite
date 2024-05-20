@@ -1,143 +1,134 @@
-# Agent Utilization Update Script
+# Genesys Cloud WFM Bulk Upload Suite
 
 ## Overview
 
-This script automates the process of updating agent utilization settings in Genesys Cloud using data from an Excel file. It reads agent utilization settings from an Excel file, searches for users by their email addresses, and updates their utilization settings via the Genesys Cloud API.
+This repository is part of a suite of tools designed for Workforce Management (WFM) in Genesys Cloud. The suite provides utilities for bulk uploading various configurations, including agent utilization settings. The web interface has been updated to use a different framework (replacing Flask) and includes enhanced navigation, making it easily extendable to include additional utilities.
 
 ## Features
 
-- Automated user search by email.
-- Utilization update based on Excel data.
-- Detailed logging of requests and responses.
-- Ensures custom utilization settings are applied.
-- Web interface for file upload and preview.
-- Reset functionality to return to the initial state.
+- **Batch Agent Utilization Updates:** Upload and process Excel files to update agent utilization settings in bulk.
+- **Dynamic Navigation:** Easily navigate between different tools within the web application.
+- **Extensible Framework:** Simple integration of additional WFM tools.
 
-## Requirements
+## Table of Contents
 
-- Python 3.6+
-- `pandas` library
-- `requests` library
-- `Flask` library
+- [Installation](#installation)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Running the Application](#running-the-application)
+- [Adding New Utilities](#adding-new-utilities)
+- [Project Structure](#project-structure)
+- [Update Logs](#update-logs)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   ```
-2. **Navigate to the project directory:**
-   ```bash
-   cd <repository-directory>
-   ```
-3. **Install the required Python packages:**
-   ```bash
-   pip install pandas requests Flask
-   ```
-4. **Create a `config.json` file in the project directory with the following structure:**
-   ```json
-   {
-       "client_id": "your_client_id",
-       "client_secret": "your_client_secret"
-   }
-   ```
+1. **Clone the Repository:**
+    ```sh
+    git clone https://github.com/hf-ck/Genesys-Cloud-Agent-Utilization-Update-Utility.git
+    cd Genesys-Cloud-Agent-Utilization-Update-Utility
+    ```
+
+2. **Create and Activate a Virtual Environment:**
+    ```sh
+    python -m venv env
+    source env/bin/activate   # On Windows, use `env\Scripts\activate`
+    ```
+
+3. **Install Dependencies:**
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+4. **Create a `.env` File:**
+    ```
+    GENESYS_CLIENT_ID=your_client_id
+    GENESYS_CLIENT_SECRET=your_client_secret
+    GENESYS_OAUTH_URL=https://login.mypurecloud.com/oauth/token
+    GENESYS_API_BASE_URL=https://api.mypurecloud.com
+    ```
+
+## Setup
+
+1. **Initialize the Application:**
+    ```sh
+    python run.py
+    ```
+
+2. **Access the Application:**
+    Open your browser and navigate to `http://127.0.0.1:5000`.
 
 ## Usage
 
-1. **Ensure the `config.json` file and `agent_utilization.xlsx` are in the project directory.**
-2. **Run the Flask app:**
-   ```bash
-   python app.py
-   ```
-3. **Open your web browser and go to:**
-   ```
-   http://127.0.0.1:5000
-   ```
-4. **Upload the Excel file using the web interface and preview the data.**
-5. **Click "Process" to update the agent utilization settings.**
-6. **Use the "Reset" button to clear the form and start over if needed.
+1. **Upload Utilization File:**
+    - Navigate to the `Utilization` section from the main navigation bar.
+    - Upload your Excel file containing agent utilization data.
+    - Preview the uploaded data and ensure it is correct.
+    - Click "Process File" to update the agent utilization settings in Genesys Cloud.
 
-## Excel File Format
+2. **Navigation:**
+    - Use the navigation bar at the top to switch between different utilities and return to the home page.
 
-The Excel file (`agent_utilization.xlsx`) should have the following columns:
+## Running the Application
 
-- `Email Address`
-- `Email Maximum Capacity`
-- `Email Interruptable Media Types`
-- `Chat Maximum Capacity`
-- `Chat Interruptable Media Types`
-- `Message Maximum Capacity`
-- `Message Interruptable Media Types`
-- `Callback Maximum Capacity`
-- `Callback Interruptable Media Types`
-- `Call Maximum Capacity`
-- `Call Interruptable Media Types`
-- `Workitem Maximum Capacity`
-- `Workitem Interruptable Media Types`
+### Using Waitress for Production on Windows
 
-### Example Excel File
+For a production environment on Windows, it's recommended to use a production-ready server like `waitress`:
 
-| Email Address                 | Email Maximum Capacity | Email Interruptable Media Types | Chat Maximum Capacity | Chat Interruptable Media Types | Message Maximum Capacity | Message Interruptable Media Types | Callback Maximum Capacity | Callback Interruptable Media Types | Call Maximum Capacity | Call Interruptable Media Types | Workitem Maximum Capacity | Workitem Interruptable Media Types |
-|-------------------------------|------------------------|---------------------------------|-----------------------|-------------------------------|--------------------------|----------------------------------|---------------------------|-----------------------------------|------------------------|-------------------------------|---------------------------|----------------------------------|
-| charles.kim@hellofresh.com    | 3                      | call,chat                       | 3                     | callback,message              | 3                        | call,chat                         | 3                         | call,chat                          | 3                      | chat                          | 3                         | call,chat                         |
-| nicholas.koch@hellofresh.com  | 3                      | call,chat                       | 3                     | callback,message              | 3                        | callback                          | 3                         | message                           | 3                      | callback,message              | 3                         | callback,message                   |
+1. **Install `waitress`**:
+    ```sh
+    pip install waitress
+    ```
 
-## Web Interface
+2. **Run the application with `waitress`**:
+    ```sh
+    waitress-serve --host=0.0.0.0 --port=5000 run:app
+    ```
 
-### Pages
+This will make the application accessible from any network interface on your host machine, using `http://<your-machine-ip>:5000`.
 
-1. **Index Page (`index.html`):**
-    - Upload an Excel file.
-    - Preview the file content.
+## Adding New Utilities
 
-2. **Preview Page (`preview.html`):**
-    - Display the content of the uploaded file.
-    - Confirm and process the data to update agent utilization.
+To add a new utility:
 
-3. **Results Page (`results.html`):**
-    - Display the results of the update process.
-    - Options to go back to the main page or reset the form.
+1. **Create a New Module:**
+    ```python
+    from some_framework import Blueprint, render_template
 
-### How to Use
+    new_utility_bp = Blueprint('new_utility', __name__)
 
-1. **Upload File:**
-    - Select the Excel file and click "Preview".
+    @new_utility_bp.route('/')
+    def index():
+        return render_template('new_utility.html')
+    ```
 
-2. **Preview File:**
-    - Review the data in the uploaded file.
-    - Click "Process" to update the utilization settings.
+2. **Register the Module:**
+    Add the new module to the main application file:
+    ```python
+    from app.routes.new_utility import new_utility_bp
 
-3. **Process Data:**
-    - The results page will show the success or failure of each update.
-    - Use the "Back" button to return to the main page.
-    - Use the "Reset" button to clear the form and start over.
+    def create_app():
+        app = SomeFrameworkApp()
+        # Register modules
+        app.register_blueprint(utilization_bp, url_prefix='/utilization')
+        app.register_blueprint(new_utility_bp, url_prefix='/new_utility')
+        # Other setup code
+        return app
+    ```
 
-## Changes/Updates
+3. **Create the Template:**
+    Create a corresponding template `new_utility.html` in the `templates` directory.
 
-### Version 1
+4. **Update Navigation Links:**
+    Update the navigation links in the main application file:
+    ```python
+    app.config['NAVIGATION_LINKS'] = {
+        'Utilization': '/utilization',
+        'New Utility': '/new_utility',
+        # Add more links here
+    }
+    ```
 
-- Automated user search by email.
-- Utilization update based on Excel data.
-- Detailed logging of requests and responses.
+## Project Structure
 
-### Version 2
-
-- **Web Interface**:
-  - Added a web interface using Flask.
-  - Allows users to upload Excel files and preview data before processing.
-- **Reset Functionality**:
-  - Added a reset button to clear the form and return to the initial state.
-- **Correct User ID Usage**:
-  - Fixed issues with using email instead of user ID for updating utilization.
-- **Improved Data Handling**:
-  - Fixed issues with extra characters in the preview and results.
-  
-### Code Version Differences
-
-**Version 1**: Initial Code
-
-**Version 2**: Updated Code with Web Interface
-
-## License
-
-This project is licensed under the MIT License.
